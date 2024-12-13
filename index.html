@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter App by Dipesh</title>
+    <style>
+        * {
+            font-size: 35px;
+            font-family: Cambria, Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: linen;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 30px;
+            width: 450px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            font-size: 25px;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: center;
+        }
+        input:focus {
+            border-color: blue;
+            outline: none;
+        }
+        button {
+            font-size: 25px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        footer {
+            font-size: 20px;
+            margin-top: 20px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Currency Converter</h1>
+            <form>
+                <label for="dollar">Amount in $</label><br/>
+                <input type="number" id="dollar" placeholder="Enter amount in $" step="0.01" oninput="convertToRupees()" /><br/>
+
+                <label for="rupee">Amount in ₹</label><br/>
+                <input type="number" id="rupee" placeholder="Enter amount in ₹" step="0.01" oninput="convertToDollars()" /><br/>
+            </form>
+            <footer>Dipesh Sharma </footer>
+        </div>
+    </div>
+
+    <script>
+        const conversionRate = 85; // Example rate: 1 USD = 85 INR
+
+        function convertToRupees() {
+            const dollarInput = document.getElementById("dollar");
+            const rupeeInput = document.getElementById("rupee");
+
+            // If dollar is entered, convert to rupees
+            if (dollarInput.value !== "") {
+                const dollarAmount = parseFloat(dollarInput.value);
+                const rupeeAmount = dollarAmount * conversionRate;
+                rupeeInput.value = rupeeAmount.toFixed(2);
+            }
+        }
+
+        function convertToDollars() {
+            const dollarInput = document.getElementById("dollar");
+            const rupeeInput = document.getElementById("rupee");
+
+            // If rupees are entered, convert to dollars
+            if (rupeeInput.value !== "") {
+                const rupeeAmount = parseFloat(rupeeInput.value);
+                const dollarAmount = rupeeAmount / conversionRate;
+                dollarInput.value = dollarAmount.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>
